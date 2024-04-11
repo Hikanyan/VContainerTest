@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using VContainer;
 
-namespace HikanyanLaboratory.Script
+namespace HikanyanLaboratory.Script.Default
 {
     public class GameController : MonoBehaviour
     {

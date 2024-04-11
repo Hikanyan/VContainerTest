@@ -1,4 +1,4 @@
-namespace HikanyanLaboratory.Script
+namespace HikanyanLaboratory.Script.Default
 {
     public interface IMessageService
     {

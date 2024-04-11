@@ -1,9 +1,9 @@
 ﻿using VContainer;
 using VContainer.Unity;
 
-namespace HikanyanLaboratory.Script
+namespace HikanyanLaboratory.Script.Default
 {
-    public class GameLifetimeScope : LifetimeScope
+    public class LifetimeScope : VContainer.Unity.LifetimeScope
     {
         protected override void Configure(IContainerBuilder builder)
         {

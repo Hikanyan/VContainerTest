@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace HikanyanLaboratory.Script
+namespace HikanyanLaboratory.Script.Default
 {
     public class ConsoleMessageService : IMessageService
     {
