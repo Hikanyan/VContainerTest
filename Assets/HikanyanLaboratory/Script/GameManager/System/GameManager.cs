@@ -1,4 +1,4 @@
-﻿namespace HikanyanLaboratory.Script.GameManager
+﻿namespace HikanyanLaboratory.Script.GameManager.System
 {
     public class GameManager
     {
