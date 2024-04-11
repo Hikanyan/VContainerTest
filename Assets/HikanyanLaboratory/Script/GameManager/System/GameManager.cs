@@ -2,16 +2,16 @@
 {
     public class GameManager
     {
-        private readonly GameStateMachine _stateMachine;
+        private readonly StateMachine _stateMachine;
 
-        public GameManager(GameStateMachine stateMachine)
+        public GameManager(StateMachine stateMachine)
         {
             _stateMachine = stateMachine;
             // 初期ステートを設定
             ChangeState(new TitleState());
         }
 
-        public void ChangeState(GameState newState)
+        public void ChangeState(State newState)
         {
             _stateMachine.ChangeState(newState);
         }

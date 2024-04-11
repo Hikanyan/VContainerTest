@@ -8,11 +8,11 @@ namespace HikanyanLaboratory.Script.GameManager.System
     {
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.Register<GameStateMachine>(Lifetime.Singleton);
+            builder.Register<StateMachine>(Lifetime.Singleton);
             builder.Register<TitleState>(Lifetime.Singleton);
             builder.Register<PlayState>(Lifetime.Singleton);
 
-            builder.Register<System.GameManager>(Lifetime.Singleton);
+            builder.Register<GameManager>(Lifetime.Singleton);
 
 
             builder.RegisterComponentInHierarchy<GameView>();

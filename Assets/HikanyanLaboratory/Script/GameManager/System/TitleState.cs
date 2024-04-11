@@ -2,7 +2,7 @@
 
 namespace HikanyanLaboratory.Script.GameManager.System
 {
-    public class TitleState : GameState
+    public class TitleState : State
     {
         public override void Enter()
         {
