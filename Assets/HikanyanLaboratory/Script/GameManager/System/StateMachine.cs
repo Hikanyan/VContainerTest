@@ -1,9 +1,11 @@
-﻿using VContainer.Unity;
+﻿using System.Collections.Generic;
+using VContainer.Unity;
 
 namespace HikanyanLaboratory.Script.GameManager.System
 {
     public class StateMachine : ITickable
     {
+        // 今のステート
         private State _currentState;
 
         // ステートの実行
