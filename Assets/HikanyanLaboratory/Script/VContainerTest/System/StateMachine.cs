@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using VContainer.Unity;
 
-namespace HikanyanLaboratory.Script.GameManager.System
+namespace HikanyanLaboratory.Script.VContainerTest.System
 {
     public class StateMachine : ITickable
     {

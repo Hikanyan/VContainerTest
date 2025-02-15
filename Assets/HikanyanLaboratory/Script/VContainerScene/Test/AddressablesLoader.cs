@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.Assertions;
 using VContainer.Unity;
+using Object = UnityEngine.Object;
 
 namespace HikanyanLaboratory.Script.VContainerScene
 {
-    public class AddressablesTests : IInitializable
+    public class AddressablesLoader : IInitializable
     {
         public async UniTask<GameObject> LoadPrefabAsync(string key)
         {
@@ -42,9 +41,8 @@ namespace HikanyanLaboratory.Script.VContainerScene
             var prefab = await LoadPrefabAsync(testPrefabKey);
             if (prefab != null)
             {
-                GameObject.Instantiate(prefab); // プレハブをシーンに生成
+                Object.Instantiate(prefab); // プレハブをシーンに生成
             }
         }
-    }
     }
 }

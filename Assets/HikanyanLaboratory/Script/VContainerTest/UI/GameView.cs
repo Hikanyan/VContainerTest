@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace HikanyanLaboratory.Script.GameManager.UI
+namespace HikanyanLaboratory.Script.VContainerTest.UI
 {
     public class GameView : MonoBehaviour
     {

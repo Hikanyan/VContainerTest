@@ -2,6 +2,6 @@
 {
     public class GameManager
     {
-        
+        public int PlayerScore { get; set; }
     }
 }

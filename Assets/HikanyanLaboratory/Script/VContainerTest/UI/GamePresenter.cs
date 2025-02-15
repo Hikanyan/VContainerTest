@@ -1,14 +1,14 @@
-﻿using HikanyanLaboratory.Script.GameManager.System;
+﻿using HikanyanLaboratory.Script.VContainerTest.System;
 using UnityEngine;
 
-namespace HikanyanLaboratory.Script.GameManager.UI
+namespace HikanyanLaboratory.Script.VContainerTest.UI
 {
     public class GamePresenter
     {
-        private readonly System.GameManager _gameManager;
+        private readonly VContainerTest.System.GameManager _gameManager;
         private readonly GameView _gameView;
 
-        public GamePresenter(System.GameManager gameManager, GameView gameView)
+        public GamePresenter(VContainerTest.System.GameManager gameManager, GameView gameView)
         {
             _gameManager = gameManager;
             _gameView = gameView;

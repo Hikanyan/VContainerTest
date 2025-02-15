@@ -1,4 +1,4 @@
-﻿namespace HikanyanLaboratory.Script.GameManager.System
+﻿namespace HikanyanLaboratory.Script.VContainerTest.System
 {
     public class GameManager
     {
