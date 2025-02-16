@@ -1,8 +1,6 @@
-﻿using HikanyanLaboratory.Script.VContainerTest.System;
-using MessagePipe;
+﻿using MessagePipe;
 using UnityEngine;
 using VContainer;
-using VContainer.Unity;
 
 namespace HikanyanLaboratory.Script.VContainerScene
 {
@@ -11,13 +9,20 @@ namespace HikanyanLaboratory.Script.VContainerScene
         [SerializeField] private string _message = "Scene A says Hello!";
         private IPublisher<string> _publisher;
 
+        [Inject]
+        public void Construct(GameMessageHandler gameMessageHandler)
+        {
+            _publisher = gameMessageHandler.MessagePublisher;
+        }
+
         void Start()
         {
-            // `LifetimeScope` から `Container` を取得
-            var container = this.GetComponentInParent<LifetimeScope>().Container;
-            _publisher = container.Resolve<IPublisher<string>>();
+            if (_publisher == null)
+            {
+                Debug.LogError("SceneA: _publisher is null. Ensure dependency injection is working.");
+                return;
+            }
 
-            // メッセージを発行
             _publisher.Publish(_message);
             Debug.Log($"SceneA published: {_message}");
         }

@@ -14,19 +14,20 @@ namespace HikanyanLaboratory.Script.VContainerScene
         private ISubscriber<string> _subscriber;
         private IDisposable _subscription;
 
-        void Start()
+        [Inject]
+        public void Construct(GameMessageHandler gameMessageHandler)
         {
-            // `LifetimeScope` から `Container` を取得
-            var container = this.GetComponentInParent<LifetimeScope>().Container;
-            _subscriber = container.Resolve<ISubscriber<string>>();
+            _subscriber = gameMessageHandler.Subscriber;
+        }
 
-            // メッセージを受信
+        void OnEnable()
+        {
             _subscription = _subscriber.Subscribe(message =>
             {
                 Debug.Log($"SceneB received: {message}");
                 if (_text != null)
                 {
-                    _text.text = message; // 受信メッセージを UI に表示
+                    _text.text = message;
                 }
                 else
                 {
@@ -35,9 +36,10 @@ namespace HikanyanLaboratory.Script.VContainerScene
             });
         }
 
-        void OnDestroy()
+        void OnDisable()
         {
-            _subscription?.Dispose(); // メモリリーク防止
+            _subscription?.Dispose();
         }
     }
 }
+
