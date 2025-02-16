@@ -18,7 +18,7 @@ namespace HikanyanLaboratory.Script.MessagePipe
         public void CountNumber()
         {
             _number++;
-            _publisher.Publish(_number);
+            _publisher.Publish(_number);// メッセージを送信
         }
     }
 

@@ -36,12 +36,19 @@ namespace HikanyanLaboratory.Script.VContainerScene
 
         public async void Initialize()
         {
-            string testPrefabKey = "TestPrefab"; // Addressables に登録されているキーを指定
-
-            var prefab = await LoadPrefabAsync(testPrefabKey);
-            if (prefab != null)
+            try
             {
-                Object.Instantiate(prefab); // プレハブをシーンに生成
+                string testPrefabKey = "TestPrefab"; // Addressables に登録されているキーを指定
+
+                var prefab = await LoadPrefabAsync(testPrefabKey);
+                if (prefab != null)
+                {
+                    Object.Instantiate(prefab); // プレハブをシーンに生成
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Exception occurred while initializing AddressablesLoader: {e.Message}");
             }
         }
     }

@@ -21,7 +21,7 @@ namespace HikanyanLaboratory.Script.MessagePipe
         {
             var onPush = _button.onClick.AsObservable();
 
-            onPush.Subscribe(_publisher.Publish);
+            onPush.Subscribe(_publisher.Publish);// ボタンが押されたらメッセージを送信
         }
 
         public void ChangeText(int num)

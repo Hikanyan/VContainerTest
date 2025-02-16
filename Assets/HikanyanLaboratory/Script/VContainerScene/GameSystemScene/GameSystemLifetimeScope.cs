@@ -16,6 +16,8 @@ namespace HikanyanLaboratory.Script.VContainerScene
             builder.Register<GameManager>(Lifetime.Singleton);
             builder.Register<AudioManager>(Lifetime.Singleton);
             builder.Register<UIManager>(Lifetime.Singleton);
+            
+            builder.Register<GameMessageHandler>(Lifetime.Singleton);
         }
     }
 }
