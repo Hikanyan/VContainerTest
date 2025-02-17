@@ -1,29 +1,19 @@
-using UnityEngine;
 using UnityEditor;
-using UnityFigmaBridge.Editor.Settings;
-
 
 namespace HikanyanLaboratory.Figma
 {
-    public class FixFigmaSprites
+    public class FigmaSpriteImporter : AssetPostprocessor
     {
-        [MenuItem("Tools/Fix Figma Sprites")]
-        static void FixSprites()
+        void OnPreprocessTexture()
         {
-            string[] guids = AssetDatabase.FindAssets("t:Texture2D", new[] { "Assets/HikanyanLaboratory/Figma" });
+            TextureImporter importer = (TextureImporter)assetImporter;
 
-            foreach (string guid in guids)
+            // Figma からの画像かどうかを判定（パスに "Figma" が含まれている場合）
+            if (importer.assetPath.Contains("Figma"))
             {
-                string path = AssetDatabase.GUIDToAssetPath(guid);
-                TextureImporter importer = AssetImporter.GetAtPath(path) as TextureImporter;
-
-                if (importer != null && importer.textureType == TextureImporterType.Sprite &&
-                    importer.spriteImportMode == SpriteImportMode.Multiple)
-                {
-                    importer.spriteImportMode = SpriteImportMode.Single;
-                    importer.SaveAndReimport();
-                    Debug.Log($"Changed {path} to SpriteMode Single");
-                }
+                importer.textureType = TextureImporterType.Sprite; // Sprite に設定
+                importer.spriteImportMode = SpriteImportMode.Single; // Single に設定
+                importer.SaveAndReimport();
             }
         }
     }

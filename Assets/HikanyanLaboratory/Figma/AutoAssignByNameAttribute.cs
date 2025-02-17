@@ -1,16 +1,15 @@
-using UnityEngine;
+using System;
 
-public class AutoAssignByNameAttribute : MonoBehaviour
+namespace HikanyanLaboratory.Figma
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [AttributeUsage(AttributeTargets.Field)]
+    public sealed class AutoAssignByNameAttribute : Attribute
     {
-        
-    }
+        public AutoAssignByNameAttribute(string name)
+        {
+            Name = name;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public string Name { get; }
     }
 }

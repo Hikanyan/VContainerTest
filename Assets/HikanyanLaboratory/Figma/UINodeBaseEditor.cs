@@ -6,7 +6,7 @@ using UINodeBase = HikanyanLaboratory.UISystemTest.UINodeBase;
 namespace HikanyanLaboratory.Figma
 {
     [CustomEditor(typeof(UINodeBase), true)]
-    public sealed class ViewEditor : Editor
+    public sealed class UINodeBaseEditor : Editor
     {
         public override void OnInspectorGUI()
         {
