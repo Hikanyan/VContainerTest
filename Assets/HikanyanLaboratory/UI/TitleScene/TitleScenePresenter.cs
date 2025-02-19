@@ -1,21 +1,15 @@
-using System.Threading;
-using Cysharp.Threading.Tasks;
-using HikanyanLaboratory.UISystem;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using System.Threading;
 
-namespace HikanyanLaboratory.UI.TitleScene
+namespace HikanyanLaboratory.UISystem
 {
     public class TitleScenePresenter : PresenterBase<TitleSceneView, TitleSceneModel>
     {
-        public override async UniTask InitializeAsync(CancellationToken ct)
+        public override UniTask InitializeAsync(CancellationToken ct)
         {
-            Debug.Log($"Initializing {Model.SceneName}");
-
-            // ボタンイベントの登録
-            View.StartButton.onClick.AddListener(() => Model.StartGame());
-            View.TitleMenuButton.onClick.AddListener(() => Model.ExitGame());
-
-            await UniTask.CompletedTask;
+            // Presenterの初期化処理
+            return default;
         }
     }
 }

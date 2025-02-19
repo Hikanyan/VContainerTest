@@ -97,8 +97,11 @@ namespace HikanyanLaboratory.UIToolSystem
             GenerateViewClass(prefabName, outputPath);
             GenerateModelClass(prefabName, outputPath);
 
+            // プレハブを更新
+            AttachScriptsToPrefab(prefabName);
+
             AssetDatabase.Refresh();
-            Debug.Log($"MVPクラスを {outputPath} に生成しました。");
+            Debug.Log($"MVPクラスを {outputPath} に生成し、Prefabにアタッチしました。");
         }
 
         /// <summary>
@@ -166,6 +169,59 @@ namespace HikanyanLaboratory.UISystem
 }}";
 
             File.WriteAllText(filePath, scriptContent);
+        }
+
+        /// <summary>
+        /// プレゼンターとビューをPrefabにアタッチ
+        /// </summary>
+        private void AttachScriptsToPrefab(string prefabName)
+        {
+            string prefabPath = AssetDatabase.GetAssetPath(selectedPrefab);
+
+            if (string.IsNullOrEmpty(prefabPath))
+            {
+                Debug.LogError("選択されたオブジェクトがPrefabではありません。");
+                return;
+            }
+
+            GameObject prefabInstance = PrefabUtility.LoadPrefabContents(prefabPath);
+
+            if (prefabInstance == null)
+            {
+                Debug.LogError("Prefabのロードに失敗しました。");
+                return;
+            }
+
+            // スクリプトのタイプを取得
+            System.Type presenterType = System.Type.GetType($"HikanyanLaboratory.UISystem.{prefabName}Presenter");
+            System.Type viewType = System.Type.GetType($"HikanyanLaboratory.UISystem.{prefabName}View");
+
+            if (presenterType == null || viewType == null)
+            {
+                Debug.LogError("スクリプトのコンパイルが完了していないか、名前空間が間違っています。");
+                PrefabUtility.UnloadPrefabContents(prefabInstance);
+                return;
+            }
+
+            // Viewコンポーネントをアタッチ
+            Component viewComponent = prefabInstance.GetComponent(viewType);
+            if (viewComponent == null)
+            {
+                prefabInstance.AddComponent(viewType);
+                Debug.Log($"{prefabName}View をPrefabに追加しました。");
+            }
+
+            // Presenterコンポーネントをアタッチ
+            Component presenterComponent = prefabInstance.GetComponent(presenterType);
+            if (presenterComponent == null)
+            {
+                prefabInstance.AddComponent(presenterType);
+                Debug.Log($"{prefabName}Presenter をPrefabに追加しました。");
+            }
+
+            // プレハブの保存
+            PrefabUtility.SaveAsPrefabAsset(prefabInstance, prefabPath);
+            PrefabUtility.UnloadPrefabContents(prefabInstance);
         }
     }
 }
