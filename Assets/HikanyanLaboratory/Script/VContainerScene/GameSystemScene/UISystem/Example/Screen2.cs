@@ -2,7 +2,7 @@
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace HikanyanLaboratory.UISystemTest.Example
+namespace HikanyanLaboratory.UISystem.Example
 {
     public class Screen2 : UIScreen
     {

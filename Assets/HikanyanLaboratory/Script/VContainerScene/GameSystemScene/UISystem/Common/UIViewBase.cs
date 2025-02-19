@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace HikanyanLaboratory.UISystemTest
+namespace HikanyanLaboratory.UISystem
 {
     public class UIViewBase : MonoBehaviour
     {

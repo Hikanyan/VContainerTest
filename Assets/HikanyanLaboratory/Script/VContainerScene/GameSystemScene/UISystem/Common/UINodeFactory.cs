@@ -1,7 +1,7 @@
 using HikanyanLaboratory.UI;
 using UnityEngine;
 
-namespace HikanyanLaboratory.UISystemTest
+namespace HikanyanLaboratory.UISystem
 {
     public static class UINodeFactory
     {

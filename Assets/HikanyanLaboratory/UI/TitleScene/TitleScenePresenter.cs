@@ -1,6 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using HikanyanLaboratory.UISystemTest;
+using HikanyanLaboratory.UISystem;
 using UnityEngine;
 
 namespace HikanyanLaboratory.UI.TitleScene

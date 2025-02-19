@@ -1,4 +1,4 @@
-﻿namespace HikanyanLaboratory.UISystemTest.Example
+﻿namespace HikanyanLaboratory.UISystem.Example
 {
     public class MainScene : UIScene
     {

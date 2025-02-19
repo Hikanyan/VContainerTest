@@ -1,7 +1,6 @@
-using HikanyanLaboratory.UISystemTest;
 using UnityEditor;
 using UnityEngine;
-using UINodeBase = HikanyanLaboratory.UISystemTest.UINodeBase;
+using HikanyanLaboratory.UISystem;
 
 namespace HikanyanLaboratory.Figma
 {
@@ -12,12 +11,18 @@ namespace HikanyanLaboratory.Figma
         {
             base.OnInspectorGUI();
             if (!GUILayout.Button("Auto Assign")) return;
-            var view = target as UINodeBase;
-            if (view == null) return;
-            EditorUtil.AutoAssignForView<UINodeBase>(view.gameObject);
-            EditorUtility.SetDirty(view.gameObject);
+
+            foreach (var obj in serializedObject.targetObjects)
+            {
+                if (obj is UINodeBase view)
+                {
+                    EditorUtil.AutoAssignForView<UINodeBase>(view.gameObject);
+                    EditorUtility.SetDirty(view.gameObject);
+                }
+            }
         }
     }
+
     [CustomEditor(typeof(UIViewBase), true)]
     public sealed class UIViewBaseEditor : Editor
     {
@@ -25,10 +30,15 @@ namespace HikanyanLaboratory.Figma
         {
             base.OnInspectorGUI();
             if (!GUILayout.Button("Auto Assign")) return;
-            var view = target as UIViewBase;
-            if (view == null) return;
-            EditorUtil.AutoAssignForView<UIViewBase>(view.gameObject);
-            EditorUtility.SetDirty(view.gameObject);
+
+            foreach (var obj in serializedObject.targetObjects)
+            {
+                if (obj is UIViewBase view)
+                {
+                    EditorUtil.AutoAssignForView<UIViewBase>(view.gameObject);
+                    EditorUtility.SetDirty(view.gameObject);
+                }
+            }
         }
     }
 }

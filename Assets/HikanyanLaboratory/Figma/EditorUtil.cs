@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Reflection;
-using HikanyanLaboratory.UISystemTest;
+using HikanyanLaboratory.UISystem;
 using UnityEngine;
 
 namespace HikanyanLaboratory.Figma

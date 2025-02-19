@@ -1,4 +1,4 @@
-using HikanyanLaboratory.UISystemTest;
+using HikanyanLaboratory.UISystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

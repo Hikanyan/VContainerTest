@@ -1,7 +1,7 @@
-﻿using HikanyanLaboratory.UISystemTest.Example;
+﻿using HikanyanLaboratory.UISystem.Example;
 using UnityEngine;
 
-namespace HikanyanLaboratory.UISystemTest
+namespace HikanyanLaboratory.UISystem
 {
     public class UITest : MonoBehaviour
     {

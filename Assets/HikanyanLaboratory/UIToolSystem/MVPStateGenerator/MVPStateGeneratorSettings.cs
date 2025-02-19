@@ -1,10 +1,11 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace HikanyanLaboratory.UIToolSystem
 {
-    [CreateAssetMenu(fileName = "PresenterGeneratorSettings", menuName = "Tools/Presenter Generator Settings")]
-    public class PresenterGeneratorSettings : ScriptableObject
+    [CreateAssetMenu(fileName = "MVPStateGeneratorSettings", menuName = "HikanyanTools/MVPStateGeneratorSettings")]
+    public class MVPStateGeneratorSettings : ScriptableObject
     {
-        public string outputDirectory = "Assets/Scripts/Generated/";
+        public string OutputDirectory = "Assets/HikanyanLaboratory/UIToolSystem/MVPStateGenerator/Generated/";
     }
 }

@@ -4,35 +4,61 @@ using UnityEngine;
 
 namespace HikanyanLaboratory.UIToolSystem
 {
-    public class PresenterGeneratorWindow : EditorWindow
+    public class MVPStateGeneratorWindow : EditorWindow
     {
         private GameObject selectedPrefab;
         private MVPStateGeneratorSettings settings;
 
-        [MenuItem("Tools/Presenter Generator")]
+        // 設定ファイルの保存パス（Editor専用フォルダ内）
+        private static readonly string settingsDirectory = "Assets/HikanyanLaboratory/UIToolSystem/MVPStateGenerator";
+        private static readonly string settingsPath = settingsDirectory + "MVPStateGeneratorSettings.asset";
+
+        [MenuItem("HikanyanTools/MVP State Generator")]
         public static void ShowWindow()
         {
-            GetWindow<PresenterGeneratorWindow>("Presenter Generator");
+            GetWindow<MVPStateGeneratorWindow>("MVP State Generator");
         }
 
         private void OnEnable()
         {
-            settings = Resources.Load<MVPStateGeneratorSettings>("PresenterGeneratorSettings");
+            LoadOrCreateSettings();
+        }
+
+        /// <summary>
+        /// 設定ファイルをロード、存在しない場合は新規作成
+        /// </summary>
+        private void LoadOrCreateSettings()
+        {
+            settings = AssetDatabase.LoadAssetAtPath<MVPStateGeneratorSettings>(settingsPath);
 
             if (settings == null)
             {
-                Debug.LogWarning("PresenterGeneratorSettings.asset が Resources フォルダにありません。作成してください。");
+                Debug.LogWarning("設定ファイルが見つかりません。新規作成します。");
+                settings = CreateInstance<MVPStateGeneratorSettings>();
+                settings.OutputDirectory = settingsDirectory;
+
+                // 設定フォルダの作成（Editorフォルダ内）
+                if (!Directory.Exists(settingsDirectory))
+                {
+                    Directory.CreateDirectory(settingsDirectory);
+                }
+
+                // 設定ファイルを作成
+                AssetDatabase.CreateAsset(settings, settingsPath);
+                AssetDatabase.SaveAssets();
+                Debug.Log($"新しい設定ファイルを作成しました: {settingsPath}");
             }
         }
 
         private void OnGUI()
         {
-            GUILayout.Label("Presenter Generator", EditorStyles.boldLabel);
-            selectedPrefab = (GameObject)EditorGUILayout.ObjectField("Prefab", selectedPrefab, typeof(GameObject), false);
+            GUILayout.Label("MVP State Generator", EditorStyles.boldLabel);
+            selectedPrefab =
+                (GameObject)EditorGUILayout.ObjectField("Prefab", selectedPrefab, typeof(GameObject), false);
 
             if (settings != null)
             {
-                settings._outputDirectory = EditorGUILayout.TextField("Output Directory", settings._outputDirectory);
+                settings.OutputDirectory = EditorGUILayout.TextField("Output Directory", settings.OutputDirectory);
             }
 
             if (GUILayout.Button("Generate MVP Classes"))
@@ -41,6 +67,9 @@ namespace HikanyanLaboratory.UIToolSystem
             }
         }
 
+        /// <summary>
+        /// MVPのプレゼンター、ビュー、モデルを生成
+        /// </summary>
         private void GenerateMVPClasses()
         {
             if (selectedPrefab == null)
@@ -49,16 +78,16 @@ namespace HikanyanLaboratory.UIToolSystem
                 return;
             }
 
-            if (settings == null || string.IsNullOrEmpty(settings._outputDirectory))
+            if (settings == null || string.IsNullOrEmpty(settings.OutputDirectory))
             {
                 Debug.LogError("設定ファイルが正しくロードされていません。");
                 return;
             }
 
             string prefabName = selectedPrefab.name;
-            string outputPath = Path.Combine(settings._outputDirectory, prefabName);
+            string outputPath = Path.Combine(settings.OutputDirectory, prefabName);
 
-            // フォルダ作成
+            // フォルダ作成（存在しない場合のみ）
             if (!Directory.Exists(outputPath))
             {
                 Directory.CreateDirectory(outputPath);
@@ -72,6 +101,9 @@ namespace HikanyanLaboratory.UIToolSystem
             Debug.Log($"MVPクラスを {outputPath} に生成しました。");
         }
 
+        /// <summary>
+        /// Presenterクラスの生成
+        /// </summary>
         private void GeneratePresenterClass(string prefabName, string outputPath)
         {
             string className = $"{prefabName}Presenter";
@@ -81,13 +113,13 @@ namespace HikanyanLaboratory.UIToolSystem
 using Cysharp.Threading.Tasks;
 using System.Threading;
 
-namespace HikanyanLaboratory.UISystemTest
+namespace HikanyanLaboratory.UISystem
 {{
     public class {className} : PresenterBase<{prefabName}View, {prefabName}Model>
     {{
         public override UniTask InitializeAsync(CancellationToken ct)
         {{
-            // Initialize Presenter Logic
+            // Presenterの初期化処理
             return default;
         }}
     }}
@@ -96,6 +128,9 @@ namespace HikanyanLaboratory.UISystemTest
             File.WriteAllText(filePath, scriptContent);
         }
 
+        /// <summary>
+        /// Viewクラスの生成
+        /// </summary>
         private void GenerateViewClass(string prefabName, string outputPath)
         {
             string className = $"{prefabName}View";
@@ -103,27 +138,30 @@ namespace HikanyanLaboratory.UISystemTest
 
             string scriptContent = $@"using UnityEngine;
 
-namespace HikanyanLaboratory.UISystemTest
+namespace HikanyanLaboratory.UISystem
 {{
     public class {className} : UIViewBase
     {{
-        // Define UI Elements and Logic Here
+        // UIのロジックをここに記述
     }}
 }}";
 
             File.WriteAllText(filePath, scriptContent);
         }
 
+        /// <summary>
+        /// Modelクラスの生成
+        /// </summary>
         private void GenerateModelClass(string prefabName, string outputPath)
         {
             string className = $"{prefabName}Model";
             string filePath = Path.Combine(outputPath, $"{className}.cs");
 
-            string scriptContent = $@"namespace HikanyanLaboratory.UISystemTest
+            string scriptContent = $@"namespace HikanyanLaboratory.UISystem
 {{
     public class {className}
     {{
-        // Define Model Data Here
+        // データモデルの定義
     }}
 }}";
 

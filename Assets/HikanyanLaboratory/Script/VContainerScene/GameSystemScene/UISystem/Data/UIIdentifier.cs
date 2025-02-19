@@ -1,4 +1,4 @@
-namespace HikanyanLaboratory.UISystemTest
+namespace HikanyanLaboratory.UISystem
 {
     public enum UIIdentifier
     {
