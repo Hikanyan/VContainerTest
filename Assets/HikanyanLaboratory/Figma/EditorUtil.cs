@@ -7,13 +7,13 @@ namespace HikanyanLaboratory.Figma
 {
     public static class EditorUtil
     {
-        public static void AutoAssignForView(GameObject gameObject)
+        public static T AutoAssignForView<T>(GameObject gameObject)
         {
             var autoAssignMap = new Dictionary<string, FieldInfo>();
 
 
-            var view = gameObject.GetComponent<UINodeBase>();
-            if (view == null) return;
+            var view = gameObject.GetComponent<T>();
+            if (view == null) return default;
 
 
             foreach (var field in view.GetType()
@@ -38,6 +38,8 @@ namespace HikanyanLaboratory.Figma
                     break;
                 }
             }
+
+            return default;
         }
     }
 }

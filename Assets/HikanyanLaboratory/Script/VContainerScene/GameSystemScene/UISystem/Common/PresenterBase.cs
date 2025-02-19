@@ -5,7 +5,7 @@ using UnityEngine;
 namespace HikanyanLaboratory.UISystemTest
 {
     public abstract class PresenterBase<TView, TModel> : UINodeBase
-        where TView : MonoBehaviour
+        where TView : UIViewBase
         where TModel : class, new()
     {
         protected TView View;
