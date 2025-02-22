@@ -7,6 +7,7 @@ public static class PrefabKeys
         { MainWindow, "Assets/HikanyanLaboratory/Script/VContainerScene/GameSystemScene/UISystem/Resources/MainWindow.prefab" },
         { Screen1, "Assets/HikanyanLaboratory/Script/VContainerScene/GameSystemScene/UISystem/Resources/Screen1.prefab" },
         { Screen2, "Assets/HikanyanLaboratory/Script/VContainerScene/GameSystemScene/UISystem/Resources/Screen2.prefab" },
+        { ScenarioScene, "Assets/HikanyanLaboratory/UI/TitleScene/Resources/ScenarioScene.prefab" },
         { TitleScene, "Assets/HikanyanLaboratory/UI/TitleScene/Resources/TitleScene.prefab" },
     };
 
@@ -14,6 +15,7 @@ public static class PrefabKeys
     public const string MainWindow = "MainWindow";
     public const string Screen1 = "Screen1";
     public const string Screen2 = "Screen2";
+    public const string ScenarioScene = "ScenarioScene";
     public const string TitleScene = "TitleScene";
     public static IEnumerable<string> GetAllKeys()
     {
