@@ -10,21 +10,27 @@ namespace HikanyanLaboratory.UISystem
         public UINodeBase Parent { get; private set; }
         public List<IUINode> Children { get; private set; } = new();
         public bool IsActive { get; protected set; }
+        private UIManager _uiManager;
 
         public void Awake()
         {
-            Id = gameObject.GetInstanceID();
+            _uiManager = UIManager.Instance;
             if (Parent == null)
             {
                 Parent = transform.parent?.GetComponent<UINodeBase>();
             }
 
-            UIManager.Instance.RegisterNode(this);
+            _uiManager.RegisterNode(this);
+        }
+
+        public void Start()
+        {
+            Id = gameObject.GetInstanceID();// Awakeで取得すると、インスタンスが生成される前に取得されてしまうため、Startで取得する
         }
 
         public void OnDestroy()
         {
-            UIManager.Instance.UnregisterNode(this);
+            _uiManager.UnregisterNode(this);
         }
 
 
