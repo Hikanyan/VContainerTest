@@ -8,7 +8,9 @@ namespace HikanyanLaboratory.UISystem
     {
         public override UniTask InitializeAsync(CancellationToken ct)
         {
-            // Presenterの初期化処理
+            View.StartButton.onClick.AddListener(() => { Model.StartGame(); });
+
+            View.TitleMenuButton.onClick.AddListener(() => { Model.OpenTitleMenu(); });
             return default;
         }
     }
