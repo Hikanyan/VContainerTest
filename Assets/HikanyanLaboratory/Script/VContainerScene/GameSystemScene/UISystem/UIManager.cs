@@ -13,7 +13,7 @@ namespace HikanyanLaboratory.UISystem
         private readonly Dictionary<int, IUINode> _activeUiNodes = new();
         private readonly List<IUINode> _uiStack = new();
         [SerializeField] private Canvas _rootCanvas;
-        private bool _inputOrderFixEnabled = true;
+        private readonly bool _inputOrderFixEnabled = true;
 
         private void Awake()
         {

@@ -7,7 +7,7 @@ public static class PrefabKeys
         { MainWindow, "Assets/HikanyanLaboratory/Script/VContainerScene/GameSystemScene/UISystem/Resources/MainWindow.prefab" },
         { Screen1, "Assets/HikanyanLaboratory/Script/VContainerScene/GameSystemScene/UISystem/Resources/Screen1.prefab" },
         { Screen2, "Assets/HikanyanLaboratory/Script/VContainerScene/GameSystemScene/UISystem/Resources/Screen2.prefab" },
-        { ScenarioScene, "Assets/HikanyanLaboratory/UI/TitleScene/Resources/ScenarioScene.prefab" },
+        { ScenarioScene, "Assets/HikanyanLaboratory/UI/ScenarioScene/Resources/ScenarioScene.prefab" },
         { TitleScene, "Assets/HikanyanLaboratory/UI/TitleScene/Resources/TitleScene.prefab" },
     };
 
